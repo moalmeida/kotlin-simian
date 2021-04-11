@@ -1,0 +1,1 @@
+web: java -jar app/micronaut-app/build/libs/micronaut-app-1.0.0-SNAPSHOT-all.jar

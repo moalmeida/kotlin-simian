@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: example.simian
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [annotation-api, app-name, docker, file-watch, gradle, http-client, junit, kotlin, kotlin-application, logback, netty-server, readme, shade, yaml]

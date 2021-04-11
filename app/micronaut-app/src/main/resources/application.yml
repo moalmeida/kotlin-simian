@@ -1,0 +1,12 @@
+micronaut:
+  application:
+    name: example-simian
+
+simian:
+  minimalRequiredChar: 4
+  minimalMatchSimian: 2
+  requiredMatchWords:
+    - 'AAAA'
+    - 'TTTT'
+    - 'CCCC'
+    - 'GGGG'
