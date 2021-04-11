@@ -1,6 +1,6 @@
 # KOTLIN-SIMIAN
 
-Example Simian DNA
+Simian DNA
 
 ## Installation
 
@@ -10,12 +10,13 @@ In order to build Kotlin distribution you need to have:
 
 - JDK 11
 - Kotlin Compiler
+- Gradle
 
 
 ### install dependencies (locally) and build the app
 
 ```bash
-$ ./gradlew clean build
+$ gradle clean build
 ```
 
 ## Testing 
@@ -23,7 +24,7 @@ $ ./gradlew clean build
 ### run unit test with coverage
 
 ```bash
-$ ./graglew test
+$ gragle test
 ```
 
 ## Running the app
@@ -31,7 +32,7 @@ $ ./graglew test
 ### 
 
 ```bash
-$ ./graglew run
+$ gragle run
 ```
 
 The app will be available on the host **localhost:8080**

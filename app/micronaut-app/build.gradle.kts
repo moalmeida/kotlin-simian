@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    id("example.simian.kotlin-application-conventions")
+    id("simian.kotlin-application-conventions")
     id("com.github.johnrengelman.shadow")
     id("io.micronaut.application")
 }
@@ -12,7 +12,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("example.simian.*")
+        annotations("simian.*")
     }
 }
 

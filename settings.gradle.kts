@@ -11,7 +11,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "example-simian"
+rootProject.name = "kotlin-simian"
 include("usecases", "entities", ":in-memory-repository", ":micronaut-app")
 
 project(":in-memory-repository").projectDir = file("adapter/in-memory-repository")

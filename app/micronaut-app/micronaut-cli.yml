@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: example.simian
+defaultPackage: simian
 testFramework: junit
 sourceLanguage: kotlin
 buildTool: gradle_kotlin

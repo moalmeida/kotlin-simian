@@ -1,5 +1,5 @@
 plugins {
-    id("example.simian.kotlin-library-conventions")
+    id("simian.kotlin-library-conventions")
 }
 
 dependencies {

@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: example-simian
+    name: kotlin-simian
 
 simian:
   minimalRequiredChar: 4
