@@ -11,6 +11,8 @@ import org.junit.jupiter.api.assertThrows
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
+import simian.entity.DNA
+import simian.model.CountGemsOutput
 
 class MainControllerTest {
 
@@ -42,6 +44,60 @@ class MainControllerTest {
         val output = mainController.verifyGems(verifyGemsInput)
 
         assertEquals(expectedOutput, output)
+
+    }
+
+    @Test
+    fun verifyGems_WithHumanParams_ReturnsTrue() {
+
+        val verifyGemsInput = VerifyGemsInput(arrayListOf("ATGCGA", "CAGTGC", "TTATTT", "AGACAG", "GCGTCA", "TAACTG"))
+        val expectedOutput = VerifyGemsOutput(false)
+        val dnaRepository = mock<DNARepository> {
+            on {
+                findById(any())
+            } doReturn null
+            on {
+                generateId(any())
+            } doReturn "fake-uuid"
+        }
+
+        val mainController = MainController(
+            dnaRepository,
+            minimalRequiredChar,
+            requiredMatchWords,
+            minimalMatchSimian
+        )
+
+        val output = mainController.verifyGems(verifyGemsInput)
+
+        assertEquals(expectedOutput, output)
+
+    }
+
+    @Test
+    fun verifyGems_WithAlreadyCreatedHumanParams_ReturnsTrue() {
+
+        val verifyGemsInput = VerifyGemsInput(arrayListOf("ATGCGA", "CAGTGC", "TTATTT", "AGACAG", "GCGTCA", "TAACTG"))
+        val expectedOutput = VerifyGemsOutput(false)
+        val dnaRepository = mock<DNARepository> {
+            on {
+                findById(any())
+            } doReturn DNA("fake-uuid", arrayListOf("ATGCGA", "CAGTGC", "TTATTT", "AGACAG", "GCGTCA", "TAACTG"), Gems.HUMAN)
+            on {
+                generateId(any())
+            } doReturn "fake-uuid"
+        }
+
+        val mainController = MainController(
+            dnaRepository,
+            minimalRequiredChar,
+            requiredMatchWords,
+            minimalMatchSimian
+        )
+
+        val output = mainController.verifyGems(verifyGemsInput)
+
+        assertEquals(expectedOutput.isSimian, output.isSimian)
 
     }
 
@@ -90,6 +146,7 @@ class MainControllerTest {
     @Test
     fun countGems_WithoutParams_ReturnsRatio05() {
 
+        val expectedOutput = CountGemsOutput(1, 2)
         val dnaRepository = mock<DNARepository> {
             on {
                 countByGems(Gems.SIMIAN)
@@ -108,13 +165,14 @@ class MainControllerTest {
 
         val output = mainController.countGems()
 
-        assertEquals(0.5, output.ratio)
+        assertEquals(expectedOutput.ratio, output.ratio)
 
     }
 
     @Test
     fun countGems_WithoutParams_ReturnsRatio00() {
 
+        val expectedOutput = CountGemsOutput(0, 2)
         val dnaRepository = mock<DNARepository> {
             on {
                 countByGems(Gems.SIMIAN)
@@ -133,7 +191,7 @@ class MainControllerTest {
 
         val output = mainController.countGems()
 
-        assertEquals(0.0, output.ratio)
+        assertEquals(expectedOutput.ratio, output.ratio)
 
     }
 

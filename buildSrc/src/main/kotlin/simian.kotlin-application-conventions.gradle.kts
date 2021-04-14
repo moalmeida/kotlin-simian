@@ -1,5 +1,6 @@
 plugins {
     id("simian.kotlin-library-conventions")
+    id("simian.kotlin-testing-conventions")
     application
 }
 

@@ -1,10 +1,5 @@
 package simian.model
 
-data class VerifyGemsInput(
-    val dna: List<String>
-) {
+import com.fasterxml.jackson.annotation.JsonProperty
 
-    override fun toString(): String {
-        return "VerifyGemsInput(dna=$dna)"
-    }
-}
+data class VerifyGemsInput(@JsonProperty("dna") val dna: List<String>)

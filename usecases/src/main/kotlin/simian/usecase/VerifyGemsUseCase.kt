@@ -20,6 +20,9 @@ class VerifyGemsUseCase(
 
     private val log: Logger = LoggerFactory.getLogger(VerifyGemsUseCase::class.java)
 
+    private fun List<*>.deepEquals(other: List<*>) =
+        this.size == other.size && this.mapIndexed { index, element -> element == other[index] }.all { it }
+
     fun execute(input: VerifyGemsInput): VerifyGemsOutput {
 
         validateContainsOnlyNitroWords(input.dna)
@@ -35,7 +38,8 @@ class VerifyGemsUseCase(
     private fun validateContainsOnlyNitroWords(dna: List<String>) {
         val receiptChars: List<String> =
             dna.joinToString("")
-                .toList().map { it.toString().toUpperCase() }
+                .toList()
+                .map { it.toString() }
                 .distinct()
                 .sorted()
         if (!receiptChars.deepEquals(Nitro.values().map { it.toString() }.sorted())) {
@@ -66,5 +70,3 @@ class VerifyGemsUseCase(
 
 }
 
-fun List<*>.deepEquals(other: List<*>) =
-    this.size == other.size && this.mapIndexed { index, element -> element == other[index] }.all { it }
